@@ -1,0 +1,62 @@
+
+***********************************************************************************************************
+
+File prologue:
+
+Author: Ashay Gatade
+Description: This file contains the description of the Error codes and exception codes for of all the Function code used in MODBUS
+Souce: https://ozeki.hu/p_5880-mobdbus-function-code-5-write-single-coil.html
+	   https://control.com/technical-articles/introduction-to-modbus/#:~:text=Modbus%20Exception%20Response
+
+***********************************************************************************************************
+
+List of function codes:
+
+	Name								Function code 	  Error code 	   		Exception code
+------------------------------------------------------------------------------------------------------
+Read (multiple) coils 						0x01            0x81            0x01 | 0x02 | 0x03 | 0x04
+Read (multiple) holding registers 			0x03		    0x83            0x01 | 0x02 | 0x03 | 0x04
+Read (multiple) input registers 			0x04		    0x84            0x01 | 0x02 | 0x03 | 0x04
+Write single coil 							0x05		    0x85            0x01 | 0x02 | 0x03 | 0x04
+Write single (holding) register 			0x06		    0x86            0x01 | 0x02 | 0x03 | 0x04
+Write multiple coils 						0x0F		    0x8F            0x01 | 0x02 | 0x03 | 0x04
+Write multiple (holding) register 			0x10		    0x90            0x01 | 0x02 | 0x03 | 0x04
+------------------------------------------------------------------------------------------------------
+
+
+#Definition of Error code and Exception code
+
+Error code: Function code but with it's MSB set, to indicate the response is indicating error condition
+
+Exception code: It described what exactly is the problem
+
+------------------------------------------------------------------
+
+Example:
+
+Read (multiple) input registers REQUEST frame
+
+Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|	CRC
+	1				1				2			  	2		 	 2
+
+Read (multiple) input registers RESPONSE frame, in case of error
+
+Slave_addr	|	Error code	|	Exception code	|	CRC
+	1				 1				  1			  	 2
+
+------------------------------------------------------------------
+
+
+
+#Various exception codes and their description
+
+Function code 	  Meaning
+-------------------------------------------------------
+   0x01            ILLEGAL FUNCTION
+   0x02		       ILLEGAL DATA ADDRESS
+   0x03		       ILLEGAL DATA VALUE
+   0x04		       FAILURE IN ASSOCIATED DEVICE
+   0x05		       ACKNOWLEDGE
+   0x06		       BUSY, REJECTED MESSAGE
+   0x07		       NAK-NEGATIVE ACKNOWLEDGMENT
+-------------------------------------------------------

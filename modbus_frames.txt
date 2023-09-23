@@ -6,21 +6,21 @@ File prologue:
 Author: Ashay Gatade
 Description: This file contains the description of the all the MODBUS frames of all the Function code used in MODBUS
 Souce: https://ozeki.hu/p_5880-mobdbus-function-code-5-write-single-coil.html
-
+Note: On bottom of frame components, their respective size in bytes is written
 ***********************************************************************************************************
 
 List of function codes:
 
-	Name								Function code
---------------------------------------------------------
-Read (multiple) coils 						0x01
+	Name					    Function code
+--------------------------------------------------------------------
+Read (multiple) coils 					0x01
 Read (multiple) holding registers 			0x03
 Read (multiple) input registers 			0x04
-Write single coil 							0x05
+Write single coil 					0x05
 Write single (holding) register 			0x06
-Write multiple coils 						0x0F
+Write multiple coils 					0x0F
 Write multiple (holding) register 			0x10
---------------------------------------------------------
+--------------------------------------------------------------------
 
 
 
@@ -33,12 +33,12 @@ Read (multiple) coils 						0x01		done
 Read (multiple) coils REQUEST frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of coils	|	CRC
-	1				1				2			  	2			 2
+    1		           1			2			  2			 2
 
 Read (multiple) coils RESPONSE frame:
 
 Slave_addr	|	Func_code	|	no of bytes	|	coil_status	|	CRC
-	1				1				1			  1			 	 2
+	1			1			1		  1		 	 2
 
 ****************************************************************************
 
@@ -49,12 +49,12 @@ Read (multiple) holding registers 			0x03		done
 Read (multiple) holding registers REQUEST frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|	CRC
-	1				1				2			  	2			 2
+	1		  1		           2			   2			 2
 
 Read (multiple) holding registers RESPONSE frame:
 
 Slave_addr	|	Func_code	|	no of bytes	|	data of a reg	|	CRC
-	1				1				1			  	2			 	 2
+	1			1			1		  	2		 2
 
 Note: 
 "data of reg" is a 2 byte value. There will be "no of bytes"/2 instances of data
@@ -70,12 +70,12 @@ Read (multiple) input registers 							0x04	done
 Read (multiple) input registers REQUEST frame
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|	CRC
-	1				1				2			  	2		 	 2
+	1			1		2			 2		 	 2
 
 Read (multiple) input registers RESPONSE frame
 
 Slave_addr	|	Func_code	|	no of bytes	|	data of a reg	|	CRC
-	1				1				1			  	2		 	 	 2
+	1			1			1		2		 	 2
 
 Note: 
 "data of reg" is a 2 byte value. There will be "no of bytes"/2 instances of data
@@ -91,7 +91,7 @@ Write single coil 							0x05		done
 Write single coil REQUEST frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	data	|	CRC
-	1				1				2			  2			 2
+	1			1		   2		         2		 2
 
 Note: 
 If coil needs to be turned ON, data = 0xFF00
@@ -111,7 +111,7 @@ Write single (holding) register 			0x06		done
 Write single (holding) register REQUEST frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	data	|	CRC
-	1				1				2			  2		 	 2
+	1			1			2		  2		 2
 
 
 Write single (holding) register RESPONSE frame:
@@ -128,12 +128,12 @@ Write multiple coils 						0x0F 			done
 Write multiple coils REQUEST frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of coils	|	no of bytes |	data	|	CRC
-	1				1				2			  	2		 	 	1 			  1 		 2
+	1			1			2		  	2		 	1 	  1 		 2
 
 Write multiple coils RESPONSE frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of coils	|	CRC
-	1				1				2			  	2		 	 2
+	1			1			2		  	2		 2
 
 
 ****************************************************************************
@@ -144,13 +144,13 @@ Write multiple (holding) register 			0x10 			done
 
 Write multiple (holding) register REQUEST frame:
 
-Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|	no of bytes	|	data	|	CRC
-	1				1				2			  	2		 	 	1 			 2 			 2
+Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|   no of bytes   | data	|	CRC
+	1			1		   2		  	   2			1 	      2 		 2
 
 Write multiple (holding) register RESPONSE frame:
 
 Slave_addr	|	Func_code	|	Base_addr	|	no of reg	|	CRC
-	1				1				2			  	2		 	 2
+	1			1			2		  	2		 2
 
 Note:
 "data of reg" is a 2 byte value. There will be "no of bytes"/2 instances of data
